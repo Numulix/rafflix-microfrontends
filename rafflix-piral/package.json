@@ -1,0 +1,47 @@
+{
+  "name": "rafflix-piral",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "piral"
+  ],
+  "dependencies": {
+    "piral": "1.2.0",
+    "piral-base": "1.2.0",
+    "piral-core": "1.2.0",
+    "piral-vue": "^1.2.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-router": "^5",
+    "react-router-dom": "^5",
+    "vue": "^2.7.14"
+  },
+  "scripts": {
+    "start": "piral debug",
+    "build": "piral build",
+    "postinstall": "piral declaration"
+  },
+  "app": "./src/index.html",
+  "types": "dist/index.d.ts",
+  "importmap": {
+    "imports": {
+      "vue": ""
+    },
+    "inherit": [
+      "piral-base",
+      "piral-core",
+      "piral"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-router": "^5",
+    "@types/react-router-dom": "^5",
+    "copy-webpack-plugin": "^11.0.0",
+    "piral-cli": "1.2.0",
+    "piral-cli-webpack5": "1.2.0",
+    "typescript": "latest"
+  }
+}
