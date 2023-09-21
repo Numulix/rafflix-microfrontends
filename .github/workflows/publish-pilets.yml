@@ -1,0 +1,119 @@
+name: Build and Publish Pilets
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_browse_pilet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install deps
+        run: |
+          cd rafflix-browse-pilet
+          npm i
+          cd ..
+      - name: Publish Pilet
+        run: |
+          cd rafflix-browse-pilet
+          npx pilet publish --fresh --api-key ${PIRAL_API_KEY} --url https://feed.piral.cloud/api/v1/pilet/rafflix-piral
+        env:
+          PIRAL_API_KEY: ${{ secrets.PIRAL_API_KEY }}
+
+  build_favorites_pilet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install deps
+        run: |
+          cd rafflix-favorites-pilet
+          npm i
+          cd ..
+      - name: Publish Pilet
+        run: |
+          cd rafflix-favorites-pilet
+          npx pilet publish --fresh --api-key ${PIRAL_API_KEY} --url https://feed.piral.cloud/api/v1/pilet/rafflix-piral
+        env:
+          PIRAL_API_KEY: ${{ secrets.PIRAL_API_KEY }}
+
+  build_profile_pilet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install deps
+        run: |
+          cd rafflix-profile-pilet
+          npm i
+          cd ..
+      - name: Publish Pilet
+        run: |
+          cd rafflix-profile-pilet
+          npx pilet publish --fresh --api-key ${PIRAL_API_KEY} --url https://feed.piral.cloud/api/v1/pilet/rafflix-piral
+        env:
+          PIRAL_API_KEY: ${{ secrets.PIRAL_API_KEY }}
+
+
+  build_search_pilet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install deps
+        run: |
+          cd rafflix-search-pilet
+          npm i
+          cd ..
+      - name: Publish Pilet
+        run: |
+          cd rafflix-search-pilet
+          npx pilet publish --fresh --api-key ${PIRAL_API_KEY} --url https://feed.piral.cloud/api/v1/pilet/rafflix-piral
+        env:
+          PIRAL_API_KEY: ${{ secrets.PIRAL_API_KEY }}
+
+
+  build_watch_pilet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install deps
+        run: |
+          cd rafflix-watch-pilet
+          npm i
+          cd ..
+      - name: Publish Pilet
+        run: |
+          cd rafflix-watch-pilet
+          npx pilet publish --fresh --api-key ${PIRAL_API_KEY} --url https://feed.piral.cloud/api/v1/pilet/rafflix-piral
+        env:
+          PIRAL_API_KEY: ${{ secrets.PIRAL_API_KEY }}
