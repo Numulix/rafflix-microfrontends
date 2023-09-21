@@ -1,0 +1,36 @@
+name: Build and Publish
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build_app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install github pages
+        run: npm install -g gh-pages
+      - name: Install deps
+        run: |
+          cd rafflix-piral
+          npm i
+          cd ..
+      - name: Build shell
+        run: |
+          cd rafflix-piral
+          npx piral build
+          cp dist/release/index.html dist/release/404.html
+          cd ..
+      - name: Deploy app shell
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          gh-pages -d "rafflix-piral/dist/release" -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
